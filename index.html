@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Jean le Croissant 🥐</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#FFF8E7;--cream2:#FFF0CC;--gold:#F4C542;--gold-dark:#D4A017;
+  --brown:#A65E2E;--dark:#7A3E14;--text:#2C1A0E;--muted:#7A6555;
+  --white:#FFF;--green:#43A047;--red:#E53935;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.5}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:11px 24px;background:rgba(255,248,231,.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(166,94,46,.12)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:900;color:var(--brown);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.nav-logo span{color:var(--gold-dark)}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-btn{background:none;border:none;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);cursor:pointer;padding:6px 11px;border-radius:99px;transition:all .2s;white-space:nowrap}
+.nav-btn:hover,.nav-btn.active{background:var(--brown);color:var(--white)}
+
+/* ── PAGES ── */
+.page{display:none;padding-top:64px;min-height:100vh}
+.page.active{display:block}
+
+/* ── BUTTONS ── */
+.btn-gold{background:var(--gold);color:var(--dark);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;padding:12px 24px;border-radius:99px;transition:all .22s;box-shadow:0 4px 14px rgba(244,197,66,.3)}
+.btn-gold:hover{background:var(--gold-dark);color:var(--white);transform:translateY(-2px)}
+.btn-brown{background:var(--brown);color:var(--white);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.86rem;font-weight:500;padding:10px 20px;border-radius:99px;transition:all .22s;box-shadow:0 4px 12px rgba(166,94,46,.24)}
+.btn-brown:hover{background:var(--dark);transform:translateY(-2px)}
+.btn-sm{padding:6px 13px!important;font-size:.76rem!important;border-radius:99px}
+
+/* ── HERO ── */
+.hero{text-align:center;padding:46px 20px 26px;position:relative;overflow:hidden}
+.float-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.float-emoji{position:absolute;opacity:.06;animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(100vh) rotate(0);opacity:0}10%{opacity:.06}90%{opacity:.06}100%{transform:translateY(-100px) rotate(360deg);opacity:0}}
+.hero-badge{display:inline-block;background:var(--gold);color:var(--dark);font-size:.67rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;padding:4px 11px;border-radius:99px;margin-bottom:13px;animation:fadeDown .6s ease both}
+.hero-mascot{font-size:clamp(56px,12vw,104px);line-height:1;display:block;margin-bottom:10px;animation:bounceIn .8s cubic-bezier(.34,1.56,.64,1) both .1s;filter:drop-shadow(0 10px 20px rgba(166,94,46,.2))}
+@keyframes bounceIn{from{transform:scale(.3) rotate(-15deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,7vw,4.2rem);font-weight:900;color:var(--brown);line-height:.95;letter-spacing:-.03em;margin-bottom:7px;animation:fadeUp .7s ease both .2s}
+.hero-title em{font-style:italic;color:var(--gold-dark)}
+.hero-sub{font-size:clamp(.85rem,2vw,1rem);color:var(--muted);font-weight:300;margin-bottom:20px;animation:fadeUp .7s ease both .3s}
+.hero-cta{animation:fadeUp .7s ease both .4s;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* ── JEAN IDENTITY ── */
+.jean-section{max-width:1040px;margin:50px auto 0;padding:0 18px 54px}
+.stitle{font-family:'Playfair Display',serif;font-size:clamp(1.25rem,3.5vw,1.9rem);font-weight:900;color:var(--brown);text-align:center;margin-bottom:3px}
+.stitle em{font-style:italic;color:var(--gold-dark)}
+.ssub{text-align:center;color:var(--muted);font-size:.84rem;margin-bottom:32px}
+.jean-layout{display:grid;grid-template-columns:1fr 260px 1fr;gap:12px;align-items:start}
+.jean-col{display:flex;flex-direction:column;gap:10px;padding-top:24px}
+.jean-photo-c{grid-column:2;grid-row:1/3;display:flex;flex-direction:column;align-items:center;gap:9px}
+.jean-img{width:100%;aspect-ratio:3/4;border-radius:16px;overflow:hidden;box-shadow:0 14px 42px rgba(166,94,46,.22);border:4px solid var(--white)}
+.jean-img img{width:100%;height:100%;object-fit:cover}
+.jean-cap{font-size:.7rem;color:var(--muted);font-style:italic;text-align:center}
+.chip{background:var(--white);border:1.5px solid rgba(166,94,46,.1);border-radius:11px;padding:11px 13px;box-shadow:0 3px 9px rgba(166,94,46,.07)}
+.chip-i{font-size:1.1rem;margin-bottom:3px;display:block}
+.chip-l{font-size:.63rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:2px}
+.chip-v{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:var(--brown);line-height:1.2}
+.chip-s{font-size:.68rem;color:var(--muted);margin-top:2px;line-height:1.3}
+.jean-col:first-child .chip:nth-child(1){transform:rotate(-1.4deg)}
+.jean-col:first-child .chip:nth-child(2){transform:rotate(.7deg)}
+.jean-col:first-child .chip:nth-child(3){transform:rotate(-.4deg)}
+.jean-col:last-child  .chip:nth-child(1){transform:rotate(1.1deg)}
+.jean-col:last-child  .chip:nth-child(2){transform:rotate(-.8deg)}
+.jean-col:last-child  .chip:nth-child(3){transform:rotate(.5deg)}
+.jean-album{grid-column:1/4;margin-top:11px}
+.album-t{font-family:'Playfair Display',serif;font-size:.88rem;font-style:italic;font-weight:700;color:var(--brown);text-align:center;margin-bottom:11px}
+.album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px}
+.album-photo{border-radius:11px;overflow:hidden;aspect-ratio:1;border:3px solid var(--white);box-shadow:0 3px 10px rgba(166,94,46,.11);transition:transform .3s,box-shadow .3s;cursor:pointer}
+.album-photo:hover{transform:scale(1.05) rotate(1deg);box-shadow:0 9px 25px rgba(166,94,46,.2)}
+.album-photo img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.album-photo:hover img{transform:scale(1.08)}
+
+/* ── RECIPE HOME ── */
+.recipe-section{max-width:800px;margin:0 auto;padding:0 18px 62px}
+.stag{display:inline-block;background:var(--gold);color:var(--dark);font-size:.67rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;padding:3px 10px;border-radius:99px;margin-bottom:9px}
+.r-title{font-family:'Playfair Display',serif;font-size:clamp(1.25rem,4vw,1.9rem);font-weight:900;color:var(--brown);line-height:1.1}
+.r-title em{font-style:italic;color:var(--gold-dark)}
+.r-sub{color:var(--muted);font-size:.84rem;margin-top:5px}
+.r-2col{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px}
+.r-block{background:var(--white);border-radius:13px;padding:16px 18px;border:1.5px solid rgba(166,94,46,.08);box-shadow:0 2px 9px rgba(166,94,46,.06)}
+.r-block-t{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.09em;color:var(--gold-dark);margin-bottom:9px}
+.r-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.r-list li{display:flex;align-items:flex-start;gap:6px;font-size:.82rem;color:var(--text);line-height:1.4}
+.r-list li strong{color:var(--brown)}
+.steps-block{background:var(--white);border-radius:13px;padding:16px 20px;border:1.5px solid rgba(166,94,46,.08);box-shadow:0 2px 9px rgba(166,94,46,.06);margin-bottom:13px}
+.step{display:flex;gap:11px;padding:8px 0;border-bottom:1px solid rgba(166,94,46,.07)}
+.step:last-child{border-bottom:none}
+.step-n{font-family:'Playfair Display',serif;font-size:1rem;font-weight:900;color:rgba(166,94,46,.2);flex-shrink:0;width:20px;text-align:right}
+.step-t{font-size:.82rem;color:var(--text);line-height:1.55}
+.step-t strong{color:var(--brown)}
+.verdict{background:linear-gradient(135deg,var(--brown),var(--dark));border-radius:13px;padding:20px 24px;color:var(--white);text-align:center}
+.verdict h4{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:5px}
+.verdict p{font-size:.82rem;line-height:1.65;opacity:.9}
+
+/* ── GAME LAYOUT ── */
+#page-jeu{background:linear-gradient(160deg,#FFF8E7 0%,#FFF0CC 100%)}
+.game-outer{max-width:1080px;margin:0 auto;padding:18px 16px 64px}
+.game-tabs{display:flex;gap:0;background:rgba(166,94,46,.1);border-radius:11px;padding:3px;margin-bottom:18px}
+.game-tab{flex:1;background:none;border:none;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);cursor:pointer;padding:7px 5px;border-radius:8px;transition:all .2s;white-space:nowrap}
+.game-tab.active{background:var(--white);color:var(--brown);font-weight:700;box-shadow:0 2px 7px rgba(166,94,46,.12)}
+.game-sub{display:none}
+.game-sub.active{display:block}
+
+/* ── CLICKER ── */
+.clicker-layout{display:grid;grid-template-columns:1fr 260px;gap:20px;align-items:start}
+.clicker-center{text-align:center}
+.g-score{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--brown);line-height:1;margin:10px 0 3px}
+.g-score span{font-size:.9rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400}
+.g-cps{font-size:.8rem;color:var(--muted);margin-bottom:14px}
+.prog-bar{background:rgba(166,94,46,.1);border-radius:99px;height:8px;margin-bottom:5px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--brown));border-radius:99px;transition:width .5s ease}
+.prog-lbl{font-size:.7rem;color:var(--muted);margin-bottom:14px}
+.click-btn{font-size:6rem;line-height:1;background:none;border:none;cursor:pointer;filter:drop-shadow(0 7px 18px rgba(166,94,46,.24));transition:transform .08s;user-select:none;-webkit-user-select:none;display:block;margin:0 auto 16px}
+.click-btn:active{transform:scale(.87)}
+@keyframes clickPop{0%{transform:scale(1)}50%{transform:scale(.84)}100%{transform:scale(1)}}
+.clicked{animation:clickPop .12s ease}
+.float-pt{position:fixed;pointer-events:none;font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--brown);z-index:500;animation:floatPt .75s ease forwards}
+@keyframes floatPt{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-70px);opacity:0}}
+.panel-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--brown);margin-bottom:10px;text-align:left}
+.upg-list{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.upg-card{background:var(--white);border:1.5px solid rgba(166,94,46,.12);border-radius:11px;padding:10px 13px;display:flex;align-items:center;gap:9px;cursor:pointer;transition:all .2s;text-align:left}
+.upg-card:hover:not(.locked){border-color:var(--gold-dark);box-shadow:0 3px 11px rgba(166,94,46,.12);transform:translateX(3px)}
+.upg-card.locked{opacity:.4;cursor:not-allowed}
+.upg-card.owned{border-color:var(--green);background:#F1FBF2;cursor:default}
+.upg-icon{font-size:1.5rem;flex-shrink:0}
+.upg-info{flex:1}
+.upg-name{font-weight:600;font-size:.83rem;color:var(--text);margin-bottom:1px}
+.upg-desc{font-size:.71rem;color:var(--muted)}
+.upg-cost{font-family:'Playfair Display',serif;font-size:.88rem;font-weight:700;color:var(--brown);white-space:nowrap}
+.upg-cost.can{color:var(--green)}
+.upg-cost.got{color:var(--green);font-size:.74rem}
+
+/* side stats */
+.side-panel{background:var(--white);border-radius:16px;padding:16px 14px;border:1.5px solid rgba(166,94,46,.1);box-shadow:0 3px 14px rgba(166,94,46,.07);position:sticky;top:78px}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(166,94,46,.07);font-size:.8rem}
+.stat-row:last-child{border-bottom:none}
+.stat-lbl{color:var(--muted)}
+.stat-val{font-weight:600;color:var(--brown);font-family:'Playfair Display',serif}
+.milestones{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.mstone{display:flex;align-items:center;gap:6px;font-size:.74rem;color:var(--muted)}
+.mstone.done{color:var(--brown);font-weight:600}
+
+/* ── BOULANGERIE ── */
+.bakery-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.bk-panel{background:var(--white);border-radius:16px;padding:18px;border:1.5px solid rgba(166,94,46,.1);box-shadow:0 3px 13px rgba(166,94,46,.07)}
+.bk-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--brown);margin-bottom:13px}
+.stock-list{display:flex;flex-direction:column;gap:7px;margin-bottom:13px}
+.stock-row{display:flex;align-items:center;gap:8px;font-size:.82rem}
+.stock-icon{font-size:1.2rem;flex-shrink:0}
+.stock-name{flex:1;color:var(--text);font-weight:500}
+.stock-qty{color:var(--muted);font-size:.76rem;min-width:55px;text-align:right}
+.stock-qty.zero{color:var(--red)}
+.rb-row{display:flex;align-items:center;gap:7px;font-size:.8rem;margin-bottom:7px}
+.rb-input{width:56px;border:1.5px solid rgba(166,94,46,.2);border-radius:7px;padding:5px 7px;font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--text);text-align:center;outline:none}
+.rb-input:focus{border-color:var(--gold-dark)}
+.rb-unit{color:var(--muted);font-size:.72rem;width:22px}
+.rb-name{width:100%;border:1.5px solid rgba(166,94,46,.2);border-radius:9px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--text);outline:none;margin-bottom:9px}
+.rb-name:focus{border-color:var(--gold-dark)}
+.taste-prev{background:var(--cream2);border-radius:9px;padding:9px 12px;margin-bottom:11px;font-size:.8rem}
+.taste-bar{background:rgba(166,94,46,.1);border-radius:99px;height:7px;margin-top:5px;overflow:hidden}
+.taste-fill{height:100%;border-radius:99px;transition:width .4s ease}
+.croissant-card{background:var(--white);border-radius:12px;padding:12px 14px;border:1.5px solid rgba(166,94,46,.1);box-shadow:0 2px 8px rgba(166,94,46,.07);cursor:pointer;transition:all .2s;margin-bottom:9px}
+.croissant-card:hover{border-color:var(--gold-dark);transform:translateX(2px)}
+.cc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.cc-name{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--brown)}
+.cc-score{font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem}
+.cc-ingr{font-size:.72rem;color:var(--muted);margin-bottom:5px;line-height:1.4}
+.cc-bonus{font-size:.72rem;font-weight:600;color:var(--green)}
+.cc-bonus.neg{color:var(--red)}
+
+/* ── SHOP ── */
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:22px}
+.shop-card{background:var(--white);border-radius:14px;padding:14px;border:1.5px solid rgba(166,94,46,.1);box-shadow:0 3px 11px rgba(166,94,46,.07)}
+.shop-card.mystery{border-style:dashed;border-color:rgba(166,94,46,.3);cursor:pointer}
+.shop-card.mystery:hover{border-color:var(--gold-dark)}
+.sc-head{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.sc-icon{font-size:1.9rem;flex-shrink:0}
+.sc-name{font-weight:600;font-size:.87rem;color:var(--text)}
+.sc-desc{font-size:.73rem;color:var(--muted);line-height:1.4}
+.sc-stock{font-size:.73rem;color:var(--muted);margin-bottom:8px}
+.sc-stock strong{color:var(--brown)}
+.sc-qty-row{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.sc-qty{width:62px;border:1.5px solid rgba(166,94,46,.2);border-radius:7px;padding:5px 8px;font-family:'DM Sans',sans-serif;font-size:.83rem;text-align:center;outline:none;color:var(--text)}
+.sc-qty:focus{border-color:var(--gold-dark)}
+.sc-price{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--brown)}
+.sc-price.can{color:var(--green)}
+.sc-price.got{color:var(--green);font-size:.78rem}
+.shop-section-lbl{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--brown);margin-bottom:13px}
+
+/* ── PROFILE ── */
+.profile-wrap{max-width:640px;margin:0 auto;padding:34px 20px 70px}
+.p-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--cream2));display:flex;align-items:center;justify-content:center;font-size:2.3rem;margin:0 auto 6px;border:4px solid var(--white);box-shadow:0 4px 15px rgba(166,94,46,.17);cursor:pointer;transition:transform .2s;user-select:none}
+.p-avatar:hover{transform:scale(1.07)}
+.p-name{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:900;color:var(--brown);text-align:center;margin-bottom:3px}
+.p-name-row{display:flex;gap:7px;justify-content:center;margin-bottom:16px}
+.p-name-in{font-family:'DM Sans',sans-serif;font-size:.86rem;border:1.5px solid rgba(166,94,46,.2);border-radius:99px;padding:6px 13px;background:var(--white);color:var(--text);outline:none;width:170px}
+.p-name-in:focus{border-color:var(--gold-dark)}
+.p-save{background:var(--brown);color:var(--white);border:none;border-radius:99px;padding:6px 13px;font-family:'DM Sans',sans-serif;font-size:.8rem;cursor:pointer}
+.p-save:hover{background:var(--dark)}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:22px}
+.stat-card{background:var(--white);border-radius:13px;padding:14px 9px;text-align:center;border:1.5px solid rgba(166,94,46,.08);box-shadow:0 2px 8px rgba(166,94,46,.06)}
+.sc-num{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--brown);display:block}
+.sc-lbl{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.p-sec{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--brown);margin-bottom:9px}
+.badge-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.badge{background:var(--cream2);border:1.5px solid rgba(166,94,46,.14);border-radius:99px;padding:4px 11px;font-size:.77rem;color:var(--brown);display:flex;align-items:center;gap:4px;cursor:pointer}
+.badge:hover{border-color:var(--brown)}
+.share-box{background:var(--white);border-radius:13px;padding:16px;border:1.5px solid rgba(166,94,46,.1);text-align:center}
+.share-box p{font-size:.84rem;color:var(--muted);margin-bottom:10px}
+.share-text{background:var(--cream2);border-radius:8px;padding:10px 12px;font-size:.77rem;color:var(--text);text-align:left;margin-bottom:10px;line-height:1.6;white-space:pre-wrap;word-break:break-word;font-family:monospace}
+.share-btns{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+
+/* ── AVATAR PICKER (grille dans modal) ── */
+.av-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-bottom:14px}
+.av-opt{font-size:1.65rem;background:var(--white);border:2px solid transparent;border-radius:9px;padding:6px;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;line-height:1}
+.av-opt:hover{border-color:var(--gold);transform:scale(1.1)}
+.av-opt.sel{border-color:var(--brown);background:var(--cream2);transform:scale(1.08)}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(44,26,14,.52);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:18px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--cream);border-radius:19px;padding:24px;width:100%;max-width:460px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 64px rgba(44,26,14,.3);animation:modalIn .3s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes modalIn{from{transform:scale(.85) translateY(16px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+.modal-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.modal-t{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--brown)}
+.modal-x{background:rgba(166,94,46,.1);border:none;cursor:pointer;width:29px;height:29px;border-radius:50%;font-size:.88rem;color:var(--brown);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal-x:hover{background:var(--brown);color:var(--white)}
+.modal-sub{width:100%;background:var(--brown);color:var(--white);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;padding:12px;border-radius:10px;margin-top:5px;transition:all .22s}
+.modal-sub:hover{background:var(--dark)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--brown);color:var(--white);padding:9px 18px;border-radius:99px;font-size:.82rem;opacity:0;transition:all .3s;z-index:9000;pointer-events:none;box-shadow:0 5px 17px rgba(44,26,14,.27);max-width:84vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.ok{background:var(--green)}
+.toast.bad{background:var(--red)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:820px){
+  .jean-layout{grid-template-columns:1fr}.jean-photo-c{grid-column:1;grid-row:auto}
+  .jean-album{grid-column:1}.jean-col{flex-direction:row;flex-wrap:wrap;padding-top:0}
+  .jean-col .chip{flex:1 1 130px;transform:none!important}
+  .r-2col,.clicker-layout,.bakery-layout{grid-template-columns:1fr}
+  .side-panel{position:static}
+}
+@media(max-width:480px){
+  nav{padding:9px 12px}.nav-logo{font-size:.88rem}.nav-btn{padding:5px 8px;font-size:.73rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">Jean <span>le Croissant</span> 🥐</div>
+  <div class="nav-links">
+    <button class="nav-btn" id="nav-home"   onclick="showPage('home')">Accueil</button>
+    <button class="nav-btn" id="nav-jeu"    onclick="showPage('jeu')">🎮 Jeu</button>
+    <button class="nav-btn" id="nav-shop"   onclick="goShop()">🛒 Shop</button>
+    <button class="nav-btn" id="nav-profil" onclick="showPage('profil')">👤 Profil</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════
+     PAGE ACCUEIL
+══════════════════════════════ -->
+<div id="page-home" class="page">
+  <div class="hero">
+    <div class="float-bg" id="floatBg"></div>
+    <div class="hero-badge">🥐 La mascotte du site</div>
+    <span class="hero-mascot">🥐</span>
+    <h1 class="hero-title">Jean<br><em>le Croissant</em></h1>
+    <p class="hero-sub">Le croissant géant né à Montmartre. Le symbole de ce site.</p>
+    <div class="hero-cta">
+      <button class="btn-gold" onclick="showPage('jeu')">🎮 Jouer</button>
+      <button class="btn-brown" onclick="document.getElementById('jean-id').scrollIntoView({behavior:'smooth'})">En savoir plus</button>
+    </div>
+  </div>
+
+  <div class="jean-section" id="jean-id">
+    <h2 class="stitle">La carte d'identité de <em>Jean</em></h2>
+    <p class="ssub">Croissant XXL — Philippe Conticini — Montmartre, Paris</p>
+    <div class="jean-layout">
+      <div class="jean-col">
+        <div class="chip"><span class="chip-i">📏</span><div class="chip-l">Dimensions</div><div class="chip-v">~50 × 25 cm</div><div class="chip-s">Comme une baguette et demie à plat</div></div>
+        <div class="chip"><span class="chip-i">⚖️</span><div class="chip-l">Poids</div><div class="chip-v">1 à 1,5 kg</div><div class="chip-s">L'équivalent de 8 à 10 croissants</div></div>
+        <div class="chip"><span class="chip-i">🔥</span><div class="chip-l">Calories</div><div class="chip-v">~3 000 kcal</div><div class="chip-s">Pour 8 à 10 personnes</div></div>
+      </div>
+      <div class="jean-photo-c">
+        <div class="jean-img"><img src="photos/jean-sac.jpg" alt="Jean" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#FFF0CC,#F5E3B8);font-size:5rem;\'>🥐</div>'"/></div>
+        <div class="jean-cap">Jean dans sa boîte — Montmartre, Paris</div>
+      </div>
+      <div class="jean-col">
+        <div class="chip"><span class="chip-i">💰</span><div class="chip-l">Prix</div><div class="chip-v">32 €</div><div class="chip-s">Versions spéciales jusqu'à 37 €</div></div>
+        <div class="chip"><span class="chip-i">🧈</span><div class="chip-l">Beurre</div><div class="chip-v">~600 g 😳</div><div class="chip-s">Beurre de tourage premium</div></div>
+        <div class="chip"><span class="chip-i">⏳</span><div class="chip-l">Fabrication</div><div class="chip-v">48 à 72 h</div><div class="chip-s">Fermentation longue, pâte feuilletée</div></div>
+      </div>
+      <div class="jean-album" style="grid-column:1/4">
+        <div class="album-t">✦ L'album de Jean ✦</div>
+        <div class="album-grid" id="albumGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-section">
+    <div style="text-align:center;margin-bottom:26px">
+      <div class="stag">👨‍🍳 Recette officielle</div>
+      <h2 class="r-title">Le croissant XXL<br><em>Philippe Conticini</em></h2>
+      <p class="r-sub">La recette pro derrière Jean — pour les courageux.</p>
+    </div>
+    <div class="r-2col">
+      <div class="r-block">
+        <div class="r-block-t">🥄 Ingrédients (1 XXL)</div>
+        <ul class="r-list">
+          <li>🌾<div>~<strong>1 kg farine</strong> T45+T55</div></li>
+          <li>🧈<div>~<strong>600 g beurre</strong> tourage 😳</div></li>
+          <li>🥛<div>Lait entier + crème</div></li>
+          <li>🍬<div>Sucre + miel</div></li>
+          <li>🫧<div>Levure fraîche</div></li>
+          <li>🧂<div>Sel + eau froide</div></li>
+        </ul>
+      </div>
+      <div class="r-block">
+        <div class="r-block-t">✨ Pourquoi ça existe</div>
+        <ul class="r-list">
+          <li>📸<div>Conçu pour être <strong>photogénique</strong></div></li>
+          <li>👥<div>Pensé pour être <strong>partagé</strong></div></li>
+          <li>🎉<div>Crée une <strong>expérience</strong> unique</div></li>
+          <li>🇫🇷<div><strong>Tendance</strong> boulangerie haut de gamme</div></li>
+          <li>🏆<div>Pâtisserie de <strong>niveau pro</strong></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="steps-block">
+      <div class="r-block-t">📋 Étapes</div>
+      <div class="step"><div class="step-n">1</div><div class="step-t"><strong>Jour 1 — Détrempe :</strong> Mélanger farine, sel, sucre, levure, lait, eau froide. Pétrir. Reposer au frais <strong>12h min</strong>.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t"><strong>Tourage :</strong> Beurre froid par pliages (<strong>3 tours min</strong>). Repos au frais entre chaque tour.</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Jour 2 — Façonnage :</strong> Grand triangle. Rouler délicatement. Cible : <strong>~50 cm</strong>.</div></div>
+      <div class="step"><div class="step-n">4</div><div class="step-t"><strong>Pousse :</strong> Lever à température ambiante <strong>3–4h</strong>. Doit doubler.</div></div>
+      <div class="step"><div class="step-n">5</div><div class="step-t"><strong>Cuisson :</strong> Dorer à l'œuf. <strong>175°C — 35 à 50 min</strong>. Surveiller.</div></div>
+    </div>
+    <div class="verdict">
+      <h4>🥐 Le verdict final</h4>
+      <p>Jean est un produit <strong>réel de pâtisserie haut niveau</strong>. 32€ pour un croissant qui en remplace 10 et nécessite 2 jours de travail ? <strong>Totalement justifié.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     PAGE JEU
+══════════════════════════════ -->
+<div id="page-jeu" class="page">
+  <div class="game-outer">
+    <div class="game-tabs">
+      <button class="game-tab active" id="gtab-clicker"     onclick="switchTab('clicker')">🥐 Clicker</button>
+      <button class="game-tab"        id="gtab-boulangerie" onclick="switchTab('boulangerie')">🏪 Boulangerie</button>
+      <button class="game-tab"        id="gtab-shop"        onclick="switchTab('shop')">🛒 Shop</button>
+    </div>
+
+    <!-- CLICKER -->
+    <div class="game-sub active" id="gsub-clicker">
+      <div class="clicker-layout">
+        <div class="clicker-center">
+          <div class="panel-title" style="text-align:center">🥐 Croissant <em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-dark)">Clicker</em></div>
+          <div class="g-score" id="score-disp">0 <span>croissants</span></div>
+          <div class="g-cps"   id="cps-disp">0 🥐/sec</div>
+          <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+          <div class="prog-lbl" id="prog-lbl">Prochain palier : 100 🥐</div>
+          <button class="click-btn" id="clickBtn" onclick="doClick(event)">🥐</button>
+          <div class="panel-title">⚙️ Améliorations clicker</div>
+          <div class="upg-list" id="upg-list"></div>
+          <div id="recipe-bonus-section" style="display:none;margin-top:14px">
+            <div class="panel-title">🥐 Bonus recettes actifs</div>
+            <div class="upg-list" id="recipe-bonus-list"></div>
+          </div>
+        </div>
+        <div class="side-panel">
+          <div class="panel-title">📊 Statistiques</div>
+          <div class="stat-row"><span class="stat-lbl">Total produit</span><span class="stat-val" id="s-total">0</span></div>
+          <div class="stat-row"><span class="stat-lbl">Par clic</span><span class="stat-val" id="s-click">1</span></div>
+          <div class="stat-row"><span class="stat-lbl">Par seconde</span><span class="stat-val" id="s-cps">0</span></div>
+          <div class="stat-row"><span class="stat-lbl">Améliorations</span><span class="stat-val" id="s-upg">0</span></div>
+          <div class="stat-row"><span class="stat-lbl">Recettes</span><span class="stat-val" id="s-rec">0</span></div>
+          <div class="stat-row"><span class="stat-lbl">Clics totaux</span><span class="stat-val" id="s-clicks">0</span></div>
+          <div class="milestones" id="milestone-list"></div>
+          <button class="btn-brown" onclick="showPage('profil')" style="width:100%;margin-top:12px;font-size:.78rem">👤 Mon profil</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOULANGERIE -->
+    <div class="game-sub" id="gsub-boulangerie">
+      <div class="bakery-layout">
+        <div>
+          <div class="bk-panel" style="margin-bottom:14px">
+            <div class="bk-title">🧺 Mon stock d'ingrédients</div>
+            <div class="stock-list" id="stock-list"></div>
+            <p style="font-size:.75rem;color:var(--muted)">Achetez des ingrédients dans le 🛒 Shop pour composer vos croissants.</p>
+          </div>
+          <div class="bk-panel">
+            <div class="bk-title">🥐 Mes croissants créés</div>
+            <div id="my-croissants"></div>
+          </div>
+        </div>
+        <div class="bk-panel">
+          <div class="bk-title">🍳 Créer un croissant</div>
+          <div id="rb-pickers"></div>
+          <input class="rb-name" id="rb-name" type="text" placeholder="Nom de votre croissant…" maxlength="40"/>
+          <div class="taste-prev" id="taste-prev"><div style="font-size:.76rem;color:var(--muted)">Composez votre recette pour voir le score de goût.</div></div>
+          <button class="btn-brown" style="width:100%" onclick="createCroissant()">✨ Créer ce croissant</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOP -->
+    <div class="game-sub" id="gsub-shop">
+      <div class="shop-section-lbl">🧴 Ingrédients</div>
+      <div class="shop-grid" id="shop-ingr-grid"></div>
+      <div class="shop-section-lbl">📜 Recettes secrètes</div>
+      <div class="shop-grid" id="shop-rec-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     PAGE PROFIL
+══════════════════════════════ -->
+<div id="page-profil" class="page">
+  <div class="profile-wrap">
+    <div class="p-avatar" id="p-avatar" onclick="openAvatarModal()">🥐</div>
+    <div style="text-align:center;font-size:.68rem;color:var(--muted);margin-bottom:7px;cursor:pointer" onclick="openAvatarModal()">✏️ Changer d'icône</div>
+    <div class="p-name" id="p-name-disp">Boulanger anonyme</div>
+    <div class="p-name-row">
+      <input class="p-name-in" id="p-name-in" type="text" placeholder="Ton pseudo…" maxlength="30"/>
+      <button class="p-save" onclick="saveName()">OK</button>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><span class="sc-num" id="p-total">0</span><span class="sc-lbl">Total 🥐</span></div>
+      <div class="stat-card"><span class="sc-num" id="p-cps">0</span><span class="sc-lbl">/sec</span></div>
+      <div class="stat-card"><span class="sc-num" id="p-upg">0</span><span class="sc-lbl">Amélior.</span></div>
+      <div class="stat-card"><span class="sc-num" id="p-clicks">0</span><span class="sc-lbl">Clics</span></div>
+      <div class="stat-card"><span class="sc-num" id="p-rec">0</span><span class="sc-lbl">Recettes</span></div>
+      <div class="stat-card"><span class="sc-num" id="p-ms">0</span><span class="sc-lbl">Paliers</span></div>
+    </div>
+    <div class="p-sec">🏅 Améliorations débloquées</div>
+    <div class="badge-list" id="p-badges"></div>
+    <div class="p-sec">🥐 Mes recettes <span style="font-size:.76rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400">(cliquez pour voir)</span></div>
+    <div class="badge-list" id="p-recipes"></div>
+    <div class="share-box">
+      <p>Partage tes stats !</p>
+      <div class="share-text" id="share-text"></div>
+      <div class="share-btns">
+        <button class="btn-brown btn-sm" onclick="copyStats()">📋 Copier</button>
+        <button class="btn-gold  btn-sm" onclick="shareStats()">📤 Partager</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL AVATAR ══ -->
+<div class="modal-overlay" id="modal-avatar">
+  <div class="modal">
+    <div class="modal-hd">
+      <span class="modal-t">🥐 Choisir mon icône</span>
+      <button class="modal-x" onclick="closeModal('avatar')">✕</button>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:13px">Clique sur une icône boulangerie pour la sélectionner.</p>
+    <div class="av-grid" id="av-grid"></div>
+    <button class="modal-sub" onclick="saveAvatar()">Enregistrer</button>
+  </div>
+</div>
+
+<!-- ══ MODAL RECETTE SECRÈTE ══ -->
+<div class="modal-overlay" id="modal-buy-rec">
+  <div class="modal">
+    <div class="modal-hd">
+      <span class="modal-t">📜 Recette mystère</span>
+      <button class="modal-x" onclick="closeModal('buy-rec')">✕</button>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px">Le contenu de cette recette sera révélé après l'achat. Elle donnera un bonus permanent à votre clicker.</p>
+    <div style="font-size:.88rem;color:var(--brown);font-weight:600;margin-bottom:14px" id="buy-rec-cost"></div>
+    <button class="modal-sub" id="buy-rec-btn">Acheter cette recette</button>
+  </div>
+</div>
+
+<!-- ══ MODAL DÉTAIL CROISSANT ══ -->
+<div class="modal-overlay" id="modal-detail">
+  <div class="modal">
+    <div class="modal-hd">
+      <span class="modal-t" id="detail-title">🥐 Ma recette</span>
+      <button class="modal-x" onclick="closeModal('detail')">✕</button>
+    </div>
+    <div id="detail-body"></div>
+    <button class="modal-sub" onclick="closeModal('detail')" style="margin-top:14px">Fermer</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════════════════
+const UPGRADES = [
+  {id:'four',      name:'Four artisanal',        icon:'🔥', desc:'+1 🥐/sec',         cost:10,   cps:1,  cb:0},
+  {id:'spatule',   name:'Spatule en or',          icon:'🍴', desc:'+1 par clic',        cost:25,   cps:0,  cb:1},
+  {id:'laminoir',  name:'Laminoir',               icon:'🎚️',desc:'+3 🥐/sec',         cost:80,   cps:3,  cb:0},
+  {id:'beurre_up', name:'Beurre premium',         icon:'🧈', desc:'+2/clic +2/sec',    cost:150,  cps:2,  cb:2},
+  {id:'apprenti',  name:'Apprenti boulanger',     icon:'👨‍🍳',desc:'+6 🥐/sec',        cost:400,  cps:6,  cb:0},
+  {id:'recette_up',name:'Recette secrète clicker',icon:'📜', desc:'+5 par clic',       cost:800,  cps:0,  cb:5},
+  {id:'boutique',  name:'Deuxième boutique',      icon:'🏪', desc:'+15 🥐/sec',        cost:2000, cps:15, cb:0},
+  {id:'robot',     name:'Robot pâtissier',        icon:'🤖', desc:'+30 🥐/sec',        cost:5000, cps:30, cb:0},
+  {id:'empire',    name:'Empire de la viennoise', icon:'👑', desc:'+10/clic +50/sec',  cost:15000,cps:50, cb:10},
+  {id:'jean_up',   name:'Le secret de Jean',      icon:'🥐', desc:'+200/sec +25/clic', cost:50000,cps:200,cb:25},
+];
+
+const MILESTONES = [
+  {n:100,   label:'100 🥐',   icon:'🌱'},
+  {n:500,   label:'500 🥐',   icon:'🥖'},
+  {n:1000,  label:'1k 🥐',    icon:'⭐'},
+  {n:5000,  label:'5k 🥐',    icon:'🌟'},
+  {n:10000, label:'10k 🥐',   icon:'🏅'},
+  {n:50000, label:'50k 🥐',   icon:'🏆'},
+  {n:100000,label:'100k 🥐',  icon:'👑'},
+];
+
+const INGREDIENTS = [
+  {id:'beurre',   name:'Beurre',              icon:'🧈', unit:'g',  basePrice:5,  baseAmt:100, intensity:1.0, desc:'La base de tout bon croissant'},
+  {id:'chocolat', name:'Chocolat',            icon:'🍫', unit:'g',  basePrice:8,  baseAmt:50,  intensity:1.2, desc:'Intense et gourmand'},
+  {id:'fraise',   name:'Confiture fraise',    icon:'🍓', unit:'g',  basePrice:6,  baseAmt:50,  intensity:1.1, desc:'Fruité et acidulé'},
+  {id:'pistache', name:'Pâte pistache',       icon:'🟢', unit:'g',  basePrice:12, baseAmt:50,  intensity:1.3, desc:'La touche raffinée'},
+  {id:'caramel',  name:'Caramel beurre salé', icon:'🍮', unit:'g',  basePrice:7,  baseAmt:50,  intensity:1.0, desc:'Doux et fondant'},
+  {id:'sucre',    name:'Sucre glace',         icon:'🍬', unit:'g',  basePrice:3,  baseAmt:100, intensity:0.7, desc:'Pour adoucir'},
+  {id:'amande',   name:"Poudre d'amande",     icon:'🌰', unit:'g',  basePrice:9,  baseAmt:50,  intensity:1.1, desc:'Moelleux et parfumé'},
+  {id:'vanille',  name:'Extrait vanille',     icon:'🫙', unit:'ml', basePrice:10, baseAmt:10,  intensity:1.4, desc:'Arôme puissant'},
+  {id:'citron',   name:'Zeste de citron',     icon:'🍋', unit:'g',  basePrice:5,  baseAmt:20,  intensity:1.2, desc:'Frais et pétillant'},
+  {id:'praline',  name:'Pralin',              icon:'🟤', unit:'g',  basePrice:11, baseAmt:50,  intensity:1.3, desc:'Croustillant et caramélisé'},
+  {id:'noisette', name:'Pâte noisette',       icon:'🌰', unit:'g',  basePrice:10, baseAmt:50,  intensity:1.2, desc:'Doux et réconfortant'},
+  {id:'matcha',   name:'Poudre matcha',       icon:'🍵', unit:'g',  basePrice:15, baseAmt:20,  intensity:1.5, desc:'Original et herbacé'},
+];
+
+const SECRET_RECIPES = [
+  {id:'sr1', name:'Beurre noisette',     icon:'🧈', cost:200,  reveal:'Beurre 200g + Noisette 80g',             ingredients:{beurre:200,noisette:80},          bonus:{cps:5, cb:2},  desc:'Un classique raffiné'},
+  {id:'sr2', name:'Choco-fraise',        icon:'🍫', cost:350,  reveal:'Chocolat 100g + Fraise 100g',            ingredients:{chocolat:100,fraise:100},          bonus:{cps:8, cb:3},  desc:'La combinaison gourmande'},
+  {id:'sr3', name:'Praliné amande',      icon:'🌰', cost:500,  reveal:'Pralin 120g + Amande 80g + Beurre 80g',  ingredients:{praline:120,amande:80,beurre:80},   bonus:{cps:12,cb:5},  desc:'Le croissant de concours'},
+  {id:'sr4', name:'Vanille pistache',    icon:'🟢', cost:800,  reveal:'Pistache 120g + Vanille 15ml + Sucre 60g',ingredients:{pistache:120,vanille:15,sucre:60},  bonus:{cps:18,cb:8},  desc:'La recette des pâtissiers étoilés'},
+  {id:'sr5', name:'Matcha citron',       icon:'🍵', cost:1200, reveal:'Matcha 30g + Citron 30g + Sucre 80g',    ingredients:{matcha:30,citron:30,sucre:80},      bonus:{cps:25,cb:12}, desc:"L'accord inattendu"},
+  {id:'sr6', name:'Triple chocolat',     icon:'🍫', cost:2000, reveal:'Chocolat 300g + Caramel 80g + Pralin 60g',ingredients:{chocolat:300,caramel:80,praline:60},bonus:{cps:40,cb:20}, desc:'Le croissant ultime'},
+];
+
+const GOOD_COMBOS = [
+  ['chocolat','fraise'],['beurre','noisette'],['beurre','caramel'],
+  ['pistache','vanille'],['amande','praline'],['matcha','citron'],
+  ['chocolat','praline'],['fraise','citron'],['caramel','amande'],
+];
+
+const AVATAR_EMOJIS = ['🥐','🧈','🌾','🥖','🫓','🍞','🥨','🥯','🧁','🍰','🎂','🍮','☕','🍵','🫖','🍫','🍯','🫙','👨‍🍳','👩‍🍳','🧑‍🍳','⭐','🏅','🏆'];
+
+// ══════════════════════════════════════════════════════
+//  TASTE ENGINE
+// ══════════════════════════════════════════════════════
+function calcTaste(map) {
+  const BASE = 400;
+  const totalFill = Object.values(map).reduce((a,b)=>a+b,0);
+  if (!totalFill) return {score:0,color:'#999',label:'Croissant nature',cpsBonus:0,cbBonus:0,fillRatio:0};
+
+  const total = BASE + totalFill;
+  const ratio = totalFill / total;
+  let score = 0;
+  if      (ratio <= 0.05) score = 30 + ratio * 200;
+  else if (ratio <= 0.15) score = 40 + (ratio-0.05)*400;
+  else if (ratio <= 0.30) score = 80 - (ratio-0.15)*100;
+  else if (ratio <= 0.50) score = 65 - (ratio-0.30)*200;
+  else                    score = Math.max(5, 25-(ratio-0.50)*100);
+
+  let totInt=0, cnt=0;
+  for (const [id,g] of Object.entries(map)) {
+    if (g<=0) continue;
+    const ing = INGREDIENTS.find(i=>i.id===id);
+    if (ing){totInt+=ing.intensity;cnt++;}
+  }
+  const avgInt = cnt>0 ? totInt/cnt : 1;
+  score *= avgInt;
+
+  const ids = Object.keys(map).filter(id=>(map[id]||0)>0);
+  let harmony=0;
+  for (const c of GOOD_COMBOS) if (c.every(x=>ids.includes(x))) harmony+=8;
+  score = Math.min(100, Math.max(1, Math.round(score+harmony)));
+
+  let color,label;
+  if      (score>=80){color='#43A047';label='Excellent !'}
+  else if (score>=60){color='#8BC34A';label='Très bon'}
+  else if (score>=40){color='#D4A017';label='Correct'}
+  else if (score>=20){color='#FF7043';label='Passable'}
+  else               {color='#E53935';label='Infâme 🤢'}
+
+  return {score,color,label,cpsBonus:Math.floor(score/10),cbBonus:Math.floor(score/20),fillRatio:ratio};
+}
+
+// ══════════════════════════════════════════════════════
+//  GAME STATE
+// ══════════════════════════════════════════════════════
+const SAVE_KEY='jlc_v3', PROF_KEY='jlc_prof';
+
+function defG(){return{score:0,total:0,totalClicks:0,owned:[],lastSave:Date.now(),stock:{},myCroissants:[],boughtRecipes:[]};}
+
+let G = defG();
+
+function loadG(){
+  try{
+    const s=localStorage.getItem(SAVE_KEY);
+    if(!s)return;
+    G={...defG(),...JSON.parse(s)};
+    const off=Math.min((Date.now()-(G.lastSave||Date.now()))/1000,7200);
+    const earned=Math.floor(totalCPS()*off);
+    if(earned>0){G.score+=earned;G.total+=earned;setTimeout(()=>toast(`Bon retour ! +${fmt(earned)} 🥐 pendant ton absence.`),900);}
+  }catch(e){G=defG();}
+}
+function saveG(){G.lastSave=Date.now();localStorage.setItem(SAVE_KEY,JSON.stringify(G));}
+
+function totalCPS(){return clickerCPS()+recipeCPS();}
+function totalCB() {return clickerCB()+recipeCB();}
+function clickerCPS(){return G.owned.reduce((s,id)=>{const u=UPGRADES.find(u=>u.id===id);return s+(u?u.cps:0);},0);}
+function clickerCB() {return 1+G.owned.reduce((s,id)=>{const u=UPGRADES.find(u=>u.id===id);return s+(u?u.cb:0);},0);}
+function recipeCPS(){let b=0;for(const c of G.myCroissants)b+=(c.cpsBonus||0);for(const id of G.boughtRecipes){const r=SECRET_RECIPES.find(r=>r.id===id);if(r)b+=r.bonus.cps;}return b;}
+function recipeCB() {let b=0;for(const c of G.myCroissants)b+=(c.cbBonus||0);for(const id of G.boughtRecipes){const r=SECRET_RECIPES.find(r=>r.id===id);if(r)b+=r.bonus.cb;}return b;}
+function getStock(id){return G.stock[id]||0;}
+
+function fmt(n){n=Math.floor(n);if(n>=1e9)return(n/1e9).toFixed(1)+'Md';if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(1)+'k';return n.toString();}
+
+// ══════════════════════════════════════════════════════
+//  NAV
+// ══════════════════════════════════════════════════════
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  const nb=document.getElementById('nav-'+id);
+  if(nb)nb.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='profil')renderProfile();
+}
+function goShop(){
+  showPage('jeu');
+  setTimeout(()=>switchTab('shop'),60);
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('nav-shop').classList.add('active');
+}
+function switchTab(tab){
+  document.querySelectorAll('.game-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.game-sub').forEach(s=>s.classList.remove('active'));
+  document.getElementById('gtab-'+tab).classList.add('active');
+  document.getElementById('gsub-'+tab).classList.add('active');
+  if(tab==='boulangerie')renderBoulangerie();
+  if(tab==='shop')renderShop();
+}
+
+// ══════════════════════════════════════════════════════
+//  CLICK
+// ══════════════════════════════════════════════════════
+function doClick(e){
+  const p=totalCB();
+  G.score+=p;G.total+=p;G.totalClicks++;
+  const fp=document.createElement('div');
+  fp.className='float-pt';fp.textContent='+'+p+' 🥐';
+  fp.style.left=(e.clientX-22)+'px';fp.style.top=(e.clientY-22)+'px';
+  document.body.appendChild(fp);setTimeout(()=>fp.remove(),760);
+  const btn=document.getElementById('clickBtn');
+  btn.classList.remove('clicked');void btn.offsetWidth;btn.classList.add('clicked');
+  updateUI();
+}
+
+// ══════════════════════════════════════════════════════
+//  CLICKER UI
+// ══════════════════════════════════════════════════════
+function renderUpgrades(){
+  const list=document.getElementById('upg-list');
+  list.innerHTML='';
+  UPGRADES.forEach(u=>{
+    const owned=G.owned.includes(u.id);
+    const afford=!owned&&G.score>=u.cost;
+    const locked=!owned&&!afford;
+    const d=document.createElement('div');
+    d.className='upg-card'+(owned?' owned':locked?' locked':'');
+    d.innerHTML=`<div class="upg-icon">${u.icon}</div>
+      <div class="upg-info"><div class="upg-name">${u.name}</div><div class="upg-desc">${u.desc}</div></div>
+      <div class="upg-cost${owned?' got':afford?' can':''}">${owned?'✅ Acheté':'🥐 '+fmt(u.cost)}</div>`;
+    if(!owned)d.onclick=()=>buyUpgrade(u.id);
+    list.appendChild(d);
+  });
+
+  // Recipe bonuses
+  const bonuses=[
+    ...G.myCroissants.map(c=>({icon:'🥐',name:c.name,desc:`+${c.cpsBonus}/sec  +${c.cbBonus}/clic`})),
+    ...G.boughtRecipes.map(id=>{const r=SECRET_RECIPES.find(r=>r.id===id);return r?{icon:r.icon,name:r.name,desc:`+${r.bonus.cps}/sec  +${r.bonus.cb}/clic`}:null;}).filter(Boolean),
+  ];
+  const sec=document.getElementById('recipe-bonus-section');
+  const lst=document.getElementById('recipe-bonus-list');
+  sec.style.display=bonuses.length?'block':'none';
+  lst.innerHTML=bonuses.map(b=>`<div class="upg-card owned"><div class="upg-icon">${b.icon}</div><div class="upg-info"><div class="upg-name">${b.name}</div><div class="upg-desc">${b.desc}</div></div><div class="upg-cost got">✅ Actif</div></div>`).join('');
+}
+
+function buyUpgrade(id){
+  const u=UPGRADES.find(u=>u.id===id);
+  if(!u||G.owned.includes(id)||G.score<u.cost)return;
+  G.score-=u.cost;G.owned.push(id);
+  toast('✅ '+u.name+' acheté !','ok');
+  renderUpgrades();updateUI();
+}
+
+function renderMilestones(){
+  const el=document.getElementById('milestone-list');
+  el.innerHTML='<div style="font-size:.7rem;font-weight:600;color:var(--muted);margin:10px 0 6px;text-transform:uppercase;letter-spacing:.06em">Paliers</div>';
+  MILESTONES.forEach(m=>{const done=G.total>=m.n;const d=document.createElement('div');d.className='mstone'+(done?' done':'');d.innerHTML=`<span>${done?m.icon:'⬜'}</span>${m.label}`;el.appendChild(d);});
+}
+
+function updateUI(){
+  const cps=totalCPS(),cb=totalCB();
+  document.getElementById('score-disp').innerHTML=`${fmt(G.score)} <span>croissants</span>`;
+  document.getElementById('cps-disp').textContent=fmt(cps)+' 🥐/sec';
+  const next=MILESTONES.find(m=>G.total<m.n);
+  const prev=next?(MILESTONES[MILESTONES.indexOf(next)-1]?.n||0):MILESTONES[MILESTONES.length-1].n;
+  const pct=next?Math.min(100,((G.total-prev)/(next.n-prev))*100):100;
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-lbl').textContent=next?`Prochain palier : ${fmt(next.n)} 🥐 (${fmt(next.n-G.total)} restants)`:'🏆 Tous les paliers atteints !';
+  document.getElementById('s-total').textContent=fmt(G.total);
+  document.getElementById('s-click').textContent=fmt(cb);
+  document.getElementById('s-cps').textContent=fmt(cps);
+  document.getElementById('s-upg').textContent=G.owned.length;
+  document.getElementById('s-rec').textContent=G.myCroissants.length+G.boughtRecipes.length;
+  document.getElementById('s-clicks').textContent=fmt(G.totalClicks);
+  renderMilestones();
+}
+
+// ══════════════════════════════════════════════════════
+//  BOULANGERIE
+// ══════════════════════════════════════════════════════
+function renderBoulangerie(){
+  // Stock
+  const sl=document.getElementById('stock-list');
+  sl.innerHTML='';
+  INGREDIENTS.forEach(ing=>{
+    const qty=getStock(ing.id);
+    const d=document.createElement('div');d.className='stock-row';
+    d.innerHTML=`<span class="stock-icon">${ing.icon}</span><span class="stock-name">${ing.name}</span><span class="stock-qty${qty===0?' zero':''}">${qty} ${ing.unit}</span>`;
+    sl.appendChild(d);
+  });
+
+  // Pickers
+  const pk=document.getElementById('rb-pickers');
+  pk.innerHTML='';
+  INGREDIENTS.forEach(ing=>{
+    const qty=getStock(ing.id);
+    const d=document.createElement('div');d.className='rb-row';
+    d.innerHTML=`<span style="font-size:1.1rem">${ing.icon}</span>
+      <span style="flex:1;font-size:.8rem">${ing.name}</span>
+      <input class="rb-input" id="rb-${ing.id}" type="number" min="0" max="${qty}" value="0" step="5" ${qty===0?'disabled title="Pas en stock"':''} oninput="updateTaste()"/>
+      <span class="rb-unit">${ing.unit}</span>`;
+    pk.appendChild(d);
+  });
+  updateTaste();
+  renderMyCroissants();
+}
+
+function getIngMap(){
+  const map={};
+  INGREDIENTS.forEach(ing=>{const v=parseInt(document.getElementById('rb-'+ing.id)?.value)||0;if(v>0)map[ing.id]=v;});
+  return map;
+}
+
+function updateTaste(){
+  const map=getIngMap();
+  const t=calcTaste(map);
+  const prev=document.getElementById('taste-prev');
+  if(!Object.keys(map).length){prev.innerHTML='<div style="font-size:.76rem;color:var(--muted)">Ajoutez des ingrédients pour voir le score de goût.</div>';return;}
+  prev.innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+      <span style="font-size:.78rem;color:var(--muted)">Score — ${t.label}</span>
+      <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;color:${t.color}">${t.score}%</span>
+    </div>
+    <div class="taste-bar"><div class="taste-fill" style="width:${t.score}%;background:${t.color}"></div></div>
+    <div style="font-size:.72rem;color:var(--muted);margin-top:5px">
+      Bonus clicker : +${t.cpsBonus}/sec · +${t.cbBonus}/clic
+      ${t.fillRatio>0.5?'<br>⚠️ Trop de garniture — score pénalisé !':''}
+    </div>`;
+}
+
+function createCroissant(){
+  const map=getIngMap();
+  const name=(document.getElementById('rb-name').value||'').trim();
+  if(!name){toast('Donne un nom à ton croissant !','bad');return;}
+  if(!Object.keys(map).length){toast('Ajoute au moins un ingrédient !','bad');return;}
+  for(const[id,qty]of Object.entries(map)){
+    if(getStock(id)<qty){const ing=INGREDIENTS.find(i=>i.id===id);toast(`Stock insuffisant en ${ing.name} !`,'bad');return;}
+  }
+  for(const[id,qty]of Object.entries(map))G.stock[id]=(G.stock[id]||0)-qty;
+  const t=calcTaste(map);
+  const ingLabel=Object.entries(map).map(([id,qty])=>{const i=INGREDIENTS.find(i=>i.id===id);return`${i.icon} ${qty}${i.unit} ${i.name}`;}).join(', ');
+  G.myCroissants.push({name,ingredients:ingLabel,score:t.score,label:t.label,color:t.color,cpsBonus:t.cpsBonus,cbBonus:t.cbBonus});
+  toast(`🥐 "${name}" créé ! Score : ${t.score}% — ${t.label}`,'ok');
+  document.getElementById('rb-name').value='';
+  INGREDIENTS.forEach(ing=>{const el=document.getElementById('rb-'+ing.id);if(el)el.value=0;});
+  updateTaste();renderMyCroissants();renderUpgrades();updateUI();
+}
+
+function renderMyCroissants(){
+  const el=document.getElementById('my-croissants');
+  if(!G.myCroissants.length){el.innerHTML='<p style="font-size:.8rem;color:var(--muted)">Aucun croissant créé. Achetez des ingrédients dans le 🛒 Shop !</p>';return;}
+  el.innerHTML=G.myCroissants.map((c,i)=>`
+    <div class="croissant-card" onclick="openDetail(${i})">
+      <div class="cc-top">
+        <div class="cc-name">🥐 ${esc(c.name)}</div>
+        <span class="cc-score" style="color:${c.color}">${c.score}%</span>
+      </div>
+      <div class="cc-ingr">${esc(c.ingredients)}</div>
+      <div class="cc-bonus${(c.cpsBonus+c.cbBonus)>0?'':' neg'}">
+        ${(c.cpsBonus+c.cbBonus)>0?`+${c.cpsBonus}/sec · +${c.cbBonus}/clic`:'Bonus trop faible'}
+      </div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════════════════
+//  SHOP
+// ══════════════════════════════════════════════════════
+function renderShop(){
+  // Ingrédients
+  const ig=document.getElementById('shop-ingr-grid');
+  ig.innerHTML='';
+  INGREDIENTS.forEach(ing=>{
+    const basePrice=shopPrice(ing,ing.baseAmt);
+    const d=document.createElement('div');d.className='shop-card';
+    d.innerHTML=`
+      <div class="sc-head"><div class="sc-icon">${ing.icon}</div>
+        <div><div class="sc-name">${ing.name}</div><div class="sc-desc">${ing.desc}</div></div>
+      </div>
+      <div class="sc-stock">En stock : <strong>${getStock(ing.id)} ${ing.unit}</strong></div>
+      <div class="sc-qty-row">
+        <input class="sc-qty" id="sq-${ing.id}" type="number" min="${ing.baseAmt}" step="${ing.baseAmt}" value="${ing.baseAmt}" oninput="refreshPrice('${ing.id}')"/>
+        <span style="font-size:.72rem;color:var(--muted)">${ing.unit}</span>
+        <span class="sc-price${G.score>=basePrice?' can':''}" id="sp-${ing.id}">🥐 ${fmt(basePrice)}</span>
+      </div>
+      <button class="btn-brown btn-sm" style="width:100%;margin-top:4px" onclick="buyIngr('${ing.id}')">Acheter</button>`;
+    ig.appendChild(d);
+  });
+
+  // Recettes secrètes
+  const rg=document.getElementById('shop-rec-grid');
+  rg.innerHTML='';
+  SECRET_RECIPES.forEach((r,i)=>{
+    const bought=G.boughtRecipes.includes(r.id);
+    const d=document.createElement('div');
+    d.className='shop-card'+(bought?'':' mystery');
+    if(bought){
+      d.innerHTML=`<div class="sc-head"><div class="sc-icon">${r.icon}</div><div><div class="sc-name">${r.name}</div><div class="sc-desc">${r.reveal}</div></div></div>
+        <div class="sc-desc" style="margin-bottom:8px">${r.desc}</div>
+        <div class="sc-price got">✅ Débloquée — +${r.bonus.cps}/sec +${r.bonus.cb}/clic</div>`;
+    }else{
+      d.innerHTML=`<div class="sc-head"><div class="sc-icon" style="font-size:2rem;filter:blur(2px)">📜</div>
+        <div><div class="sc-name">Recette mystère ${i+1}</div><div class="sc-desc">Contenu inconnu jusqu'à l'achat</div></div></div>
+        <div class="sc-price${G.score>=r.cost?' can':''}" style="margin:7px 0">🥐 ${fmt(r.cost)}</div>
+        <button class="btn-brown btn-sm" style="width:100%" onclick="openBuyRec('${r.id}')">Acheter à l'aveugle</button>`;
+    }
+    rg.appendChild(d);
+  });
+}
+
+function shopPrice(ing,qty){return Math.ceil((qty/ing.baseAmt)*ing.basePrice);}
+
+function refreshPrice(id){
+  const ing=INGREDIENTS.find(i=>i.id===id);
+  const qty=parseInt(document.getElementById('sq-'+id)?.value)||ing.baseAmt;
+  const p=shopPrice(ing,qty);
+  const el=document.getElementById('sp-'+id);
+  if(el){el.textContent='🥐 '+fmt(p);el.className='sc-price'+(G.score>=p?' can':'');}
+}
+
+function buyIngr(id){
+  const ing=INGREDIENTS.find(i=>i.id===id);
+  const qty=Math.max(ing.baseAmt,parseInt(document.getElementById('sq-'+id)?.value)||ing.baseAmt);
+  const p=shopPrice(ing,qty);
+  if(G.score<p){toast(`Pas assez de 🥐 ! (besoin : ${fmt(p)})`,'bad');return;}
+  G.score-=p;G.stock[id]=(G.stock[id]||0)+qty;
+  toast(`${ing.icon} +${qty}${ing.unit} de ${ing.name} !`,'ok');
+  renderShop();updateUI();
+}
+
+let pendingRec=null;
+function openBuyRec(id){
+  const r=SECRET_RECIPES.find(r=>r.id===id);if(!r)return;
+  pendingRec=id;
+  document.getElementById('buy-rec-cost').textContent=`Prix : 🥐 ${fmt(r.cost)} croissants`;
+  document.getElementById('buy-rec-btn').onclick=()=>confirmBuyRec(id);
+  openModal('buy-rec');
+}
+function confirmBuyRec(id){
+  const r=SECRET_RECIPES.find(r=>r.id===id);
+  if(!r||G.boughtRecipes.includes(id))return;
+  if(G.score<r.cost){toast('Pas assez de 🥐 !','bad');closeModal('buy-rec');return;}
+  G.score-=r.cost;G.boughtRecipes.push(id);
+  closeModal('buy-rec');
+  toast(`📜 Recette débloquée : ${r.name} ! ${r.reveal}`,'ok');
+  renderShop();renderUpgrades();updateUI();
+}
+
+// ══════════════════════════════════════════════════════
+//  DETAIL CROISSANT
+// ══════════════════════════════════════════════════════
+function openDetail(i){
+  const c=G.myCroissants[i];if(!c)return;
+  document.getElementById('detail-title').textContent='🥐 '+c.name;
+  document.getElementById('detail-body').innerHTML=`
+    <div style="text-align:center;margin-bottom:16px">
+      <div style="font-size:2.8rem;margin-bottom:7px">🥐</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--brown);margin-bottom:4px">${esc(c.name)}</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--cream2);border-radius:99px;padding:5px 14px">
+        <span style="font-size:.8rem;color:var(--muted)">${c.label}</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:900;font-size:1.2rem;color:${c.color}">${c.score}%</span>
+      </div>
+    </div>
+    <div style="background:var(--white);border-radius:11px;padding:13px 15px;margin-bottom:11px;border:1.5px solid rgba(166,94,46,.1)">
+      <div style="font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-dark);margin-bottom:9px">🥄 Ingrédients</div>
+      <div style="font-size:.84rem;color:var(--text);line-height:1.8">${c.ingredients?c.ingredients.split(', ').map(l=>'<div>'+esc(l)+'</div>').join(''):'Nature'}</div>
+    </div>
+    <div style="background:var(--white);border-radius:11px;padding:13px 15px;border:1.5px solid rgba(166,94,46,.1)">
+      <div style="font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gold-dark);margin-bottom:9px">⚡ Bonus clicker</div>
+      <div style="display:flex;gap:12px">
+        <div style="flex:1;text-align:center;background:var(--cream2);border-radius:9px;padding:9px">
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--brown)">+${c.cpsBonus}</div>
+          <div style="font-size:.7rem;color:var(--muted)">par seconde</div>
+        </div>
+        <div style="flex:1;text-align:center;background:var(--cream2);border-radius:9px;padding:9px">
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--brown)">+${c.cbBonus}</div>
+          <div style="font-size:.7rem;color:var(--muted)">par clic</div>
+        </div>
+      </div>
+    </div>`;
+  openModal('detail');
+}
+
+// ══════════════════════════════════════════════════════
+//  PROFILE
+// ══════════════════════════════════════════════════════
+function loadP(){try{return JSON.parse(localStorage.getItem(PROF_KEY))||{};}catch(e){return{};}}
+function saveP(p){localStorage.setItem(PROF_KEY,JSON.stringify(p));}
+
+function renderProfile(){
+  const p=loadP();
+  const name=p.name||'Boulanger anonyme';
+  const emoji=p.emoji||'🥐';
+  document.getElementById('p-avatar').textContent=emoji;
+  document.getElementById('p-name-disp').textContent=name;
+  document.getElementById('p-name-in').value=name;
+  const cps=totalCPS(),cb=totalCB();
+  const doneM=MILESTONES.filter(m=>G.total>=m.n).length;
+  document.getElementById('p-total').textContent=fmt(G.total);
+  document.getElementById('p-cps').textContent=fmt(cps);
+  document.getElementById('p-upg').textContent=G.owned.length;
+  document.getElementById('p-clicks').textContent=fmt(G.totalClicks);
+  document.getElementById('p-rec').textContent=G.myCroissants.length+G.boughtRecipes.length;
+  document.getElementById('p-ms').textContent=doneM;
+
+  const bl=document.getElementById('p-badges');
+  bl.innerHTML=G.owned.length===0
+    ?'<span style="font-size:.8rem;color:var(--muted)">Aucune — joue pour en débloquer !</span>'
+    :G.owned.map(id=>{const u=UPGRADES.find(u=>u.id===id);return u?`<div class="badge">${u.icon} ${u.name}</div>`:''}).join('');
+
+  const rl=document.getElementById('p-recipes');
+  const allR=[
+    ...G.myCroissants.map((c,i)=>`<div class="badge" onclick="openDetail(${i})" style="cursor:pointer">🥐 ${esc(c.name)} <span style="color:${c.color};font-weight:700">${c.score}%</span></div>`),
+    ...G.boughtRecipes.map(id=>{const r=SECRET_RECIPES.find(r=>r.id===id);return r?`<div class="badge">${r.icon} ${r.name}</div>`:'';}),
+  ];
+  rl.innerHTML=allR.length?allR.join(''):'<span style="font-size:.8rem;color:var(--muted)">Aucune recette créée.</span>';
+
+  document.getElementById('share-text').textContent=buildShare(name,emoji);
+}
+
+function buildShare(name,emoji){
+  const doneM=MILESTONES.filter(m=>G.total>=m.n);
+  return[
+    `${emoji} ${name} — Jean le Croissant 🥐`,
+    '',
+    `🥐 Total : ${fmt(G.total)} croissants`,
+    `⚡ ${fmt(totalCPS())}/sec · 👆 ${fmt(totalCB())}/clic`,
+    `🛒 Améliorations : ${G.owned.length}/${UPGRADES.length}`,
+    `🧑‍🍳 Recettes : ${G.myCroissants.length+G.boughtRecipes.length}`,
+    `🏅 Paliers : ${doneM.length}/${MILESTONES.length}`,
+    doneM.length?doneM.slice(-2).map(m=>m.icon+' '+m.label).join(' · '):'',
+  ].filter(l=>l!==undefined).join('\n').replace(/\n\n\n/g,'\n\n').trim();
+}
+
+function saveName(){
+  const p=loadP();
+  p.name=document.getElementById('p-name-in').value.trim()||'Boulanger anonyme';
+  saveP(p);
+  document.getElementById('p-name-disp').textContent=p.name;
+  document.getElementById('share-text').textContent=buildShare(p.name,p.emoji);
+  toast('Pseudo enregistré !','ok');
+}
+
+function copyStats(){const t=document.getElementById('share-text').textContent;navigator.clipboard.writeText(t).then(()=>toast('Copié ! 📋','ok')).catch(()=>{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copié ! 📋','ok');});}
+function shareStats(){const t=document.getElementById('share-text').textContent;if(navigator.share)navigator.share({title:'Jean le Croissant 🥐',text:t}).catch(()=>{});else copyStats();}
+
+// ══════════════════════════════════════════════════════
+//  AVATAR — SOLUTION ROBUSTE
+//  On remplit la grille PUIS on ouvre le modal
+// ══════════════════════════════════════════════════════
+let selAvatar=null;
+
+function openAvatarModal(){
+  // 1. Remplir la grille AVANT d'ouvrir
+  const grid=document.getElementById('av-grid');
+  grid.innerHTML='';
+  selAvatar=null;
+  AVATAR_EMOJIS.forEach(em=>{
+    const b=document.createElement('button');
+    b.className='av-opt';
+    b.textContent=em;
+    b.setAttribute('aria-label',em);
+    b.addEventListener('click',()=>{
+      grid.querySelectorAll('.av-opt').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');
+      selAvatar=em;
+    });
+    grid.appendChild(b);
+  });
+  // 2. Ouvrir le modal
+  document.getElementById('modal-avatar').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function saveAvatar(){
+  if(!selAvatar){toast('Sélectionne une icône d\'abord !','bad');return;}
+  const p=loadP();p.emoji=selAvatar;saveP(p);
+  document.getElementById('p-avatar').textContent=selAvatar;
+  const st=document.getElementById('share-text');
+  if(st)st.textContent=buildShare(p.name,p.emoji);
+  closeModal('avatar');
+  toast('Icône mise à jour '+selAvatar,'ok');
+}
+
+// ══════════════════════════════════════════════════════
+//  MODAL (générique)
+// ══════════════════════════════════════════════════════
+function openModal(id){
+  document.getElementById('modal-'+id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById('modal-'+id).classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.modal-overlay').forEach(o=>{
+  o.addEventListener('click',e=>{if(e.target===o)closeModal(o.id.replace('modal-',''));});
+});
+
+// ══════════════════════════════════════════════════════
+//  TOAST
+// ══════════════════════════════════════════════════════
+let toastT;
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast show'+(type?' '+type:'');
+  clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+// ══════════════════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════════════════
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// ══════════════════════════════════════════════════════
+//  INIT — FLOATING BG + ALBUM
+// ══════════════════════════════════════════════════════
+const fb=document.getElementById('floatBg');
+for(let i=0;i<12;i++){
+  const el=document.createElement('span');el.className='float-emoji';
+  el.textContent=['🥐','🧈','🌾','🫙'][Math.floor(Math.random()*4)];
+  el.style.cssText=`left:${Math.random()*100}vw;font-size:${1+Math.random()*1.7}rem;animation-duration:${14+Math.random()*17}s;animation-delay:-${Math.random()*20}s`;
+  fb.appendChild(el);
+}
+[{src:'photos/jean-lac.jpg',alt:'Jean au lac'},
+ {src:'photos/jean-cafe.jpg',alt:'Jean et café'},
+ {src:'photos/jean-main.jpg',alt:'Jean en main'},
+ {src:'photos/jean-interieur.jpg',alt:'La mie'},
+ {src:'photos/jean-sac2.jpg',alt:'Jean en boîte'},
+ {src:'photos/jean-vitrine.jpg',alt:'Vitrine'}]
+.forEach(p=>{
+  const d=document.createElement('div');d.className='album-photo';
+  d.innerHTML=`<img src="${p.src}" alt="${p.alt}" onerror="this.parentElement.innerHTML='<div style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#FFF0CC,#F5E3B8);font-size:2.2rem;\\'>🥐</div>'"/>`;
+  document.getElementById('albumGrid').appendChild(d);
+});
+
+// ══════════════════════════════════════════════════════
+//  GAME LOOP
+// ══════════════════════════════════════════════════════
+loadG();
+updateUI();
+renderUpgrades();
+showPage('home');
+
+let lastTick=Date.now();
+setInterval(()=>{
+  const now=Date.now(),dt=(now-lastTick)/1000;lastTick=now;
+  const cps=totalCPS();
+  if(cps>0){G.score+=cps*dt;G.total+=cps*dt;}
+  updateUI();renderUpgrades();
+},100);
+
+setInterval(saveG,10000);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'&&document.getElementById('page-jeu').classList.contains('active')
+     &&document.getElementById('gsub-clicker').classList.contains('active')){
+    e.preventDefault();document.getElementById('clickBtn').click();
+  }
+});
+</script>
+</body>
+</html>
